@@ -1,0 +1,261 @@
+[33mcommit 3621c532f0e11a3ecc33bc806ce26cb4b1475f98[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/api_login_screen[m[33m)[m
+Author: Elzewaidi <mohamed202201048@gmail.com>
+Date:   Fri Aug 29 20:03:33 2025 +0300
+
+    +update
+
+[33mcommit d0ef0b03c7d64daeb44329243598a4088fecb092[m
+Author: Elzewaidi <mohamed202201048@gmail.com>
+Date:   Fri Aug 29 00:36:24 2025 +0300
+
+    +update logic for login_screen
+
+[33mcommit ce5f30e480fc1a435fa9be304c0b625f67803575[m
+Author: Elzewaidi <mohamed202201048@gmail.com>
+Date:   Thu Aug 28 15:44:30 2025 +0300
+
+    +update for login_screen
+
+[33mcommit 9ecf52658b95230b7d78594bab8140bf732ad3c4[m
+Author: Elzewaidi <mohamed202201048@gmail.com>
+Date:   Wed Aug 27 00:39:57 2025 +0300
+
+    +add reset_password_screen and update for profile_update_screen
+
+[33mcommit 3db8e72f6167d33752b628f5919a3b9b858c212b[m
+Author: Elzewaidi <mohamed202201048@gmail.com>
+Date:   Tue Aug 26 19:21:25 2025 +0300
+
+    +add model
+
+[33mcommit 47acdd29b5b1e10f8ac6cb3175fb327668742310[m
+Author: Elzewaidi <mohamed202201048@gmail.com>
+Date:   Tue Aug 26 19:21:03 2025 +0300
+
+    +add app-prefrences
+
+[33mcommit 4511f3eff7af56dd33b255c11c14b4475029f919[m
+Author: Elzewaidi <mohamed202201048@gmail.com>
+Date:   Tue Aug 26 19:20:22 2025 +0300
+
+    +add api_login
+
+[33mcommit a7d9dcfb3b31e9f69c2640f2ad6b892abceeb673[m
+Author: Elzewaidi <mohamed202201048@gmail.com>
+Date:   Tue Aug 26 19:19:37 2025 +0300
+
+    +add api && update for custom_text_form_field
+
+[33mcommit 4908928c2f62d4308c5e7b19d3ca74c3f58ba5ba[m[33m ([m[1;31morigin/feature/api_register_screen[m[33m)[m
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Mon Aug 25 00:45:14 2025 +0300
+
+    update api folder
+
+[33mcommit 2cca749b2e2bc4aadf7382613da2c2c1f382f8a8[m
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Mon Aug 25 00:34:39 2025 +0300
+
+    api folders created
+
+[33mcommit b484efa312b1798e343486cb9c5057d7d2b84337[m
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 18:36:46 2025 +0300
+
+    update
+
+[33mcommit 6ceb8c1ca3de2d83bb21cd34232878506ad8334d[m
+Merge: 0d0361e 9c3e699
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 18:26:50 2025 +0300
+
+    Merge branch 'development' of https://github.com/AbdelrhmanH295/movie_app into development
+
+[33mcommit 0d0361eef31fc5ef5e683d6d4d93d17ff2b98df5[m
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 18:26:47 2025 +0300
+
+    update
+
+[33mcommit 9c3e6996f99d292d129f146f7003f50db67ae07e[m[33m ([m[1;32mdevelopment[m[33m)[m
+Merge: 4709daa e9d4a07
+Author: Abdelrhman hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 14:36:39 2025 +0300
+
+    Merge pull request #13 from AbdelrhmanH295/feature/profile-update
+    
+    Feature/profile update
+
+[33mcommit e9d4a072f05d534233e07d2764796780550cf175[m[33m ([m[1;31morigin/feature/profile-update[m[33m)[m
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 14:31:26 2025 +0300
+
+    update
+
+[33mcommit 2ef17686116268b7ceef74d2803dee146cf341eb[m
+Merge: 988712f 4709daa
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 14:31:11 2025 +0300
+
+    Merge branch 'development'
+
+[33mcommit 988712f8b982f00b29aff82319a649bb9cc8e32c[m
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 14:28:13 2025 +0300
+
+    update
+
+[33mcommit 4709daad0c06f6072a5e0626553ed3ca0bddbfd9[m
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 14:27:28 2025 +0300
+
+    update
+
+[33mcommit 5592d139eeed5518926e16c9263228647b8a3a2e[m
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 14:27:16 2025 +0300
+
+    main update
+
+[33mcommit bf7f1cf3c663ae903a5782c7937b1bf1a78779af[m
+Merge: 2a63b73 0b45548
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 14:24:02 2025 +0300
+
+    Merge branch 'development' of https://github.com/AbdelrhmanH295/movie_app into development
+
+[33mcommit 2a63b73caff357a0bb483bc5cca2d814779fe6ad[m
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 14:23:57 2025 +0300
+
+    update app routes
+
+[33mcommit 0b45548944898ec03c7f55684204b9498013a3e0[m
+Merge: c57e1a4 74a7e0b
+Author: Abdelrhman hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 14:22:48 2025 +0300
+
+    Merge pull request #12 from AbdelrhmanH295/feature/on_boarding
+    
+    Feature/on boarding
+
+[33mcommit 74a7e0b9bcf673fa76f5c613e417516292c3bd04[m[33m ([m[1;31morigin/feature/on_boarding[m[33m)[m
+Author: mostafa-eltrass <eltrassmostaf@gmail.com>
+Date:   Fri Aug 22 14:20:53 2025 +0300
+
+    added onboarding screen
+
+[33mcommit f8c3268173558b6654a90a65cc2558ae9f4df649[m
+Author: mostafa-eltrass <eltrassmostaf@gmail.com>
+Date:   Fri Aug 22 03:54:04 2025 +0300
+
+    add onboarding
+
+[33mcommit f87cc571112a28f0d001f782f58d25a98a8f060d[m
+Author: mostafa-eltrass <eltrassmostaf@gmail.com>
+Date:   Fri Aug 22 02:12:48 2025 +0300
+
+    WIP: forget password screen changes
+
+[33mcommit c57e1a48c4756f644ada266840608f3f179b9013[m
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 01:56:52 2025 +0300
+
+    screen linkes update
+
+[33mcommit 95c252767608e76326bf2b2b0af5e03b357a736d[m
+Merge: 0969f2f 34685c1
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 01:39:43 2025 +0300
+
+    Merge branch 'development' of https://github.com/AbdelrhmanH295/movie_app into development
+
+[33mcommit 0969f2f5bc4582aeddde68f3921b85ece295607d[m
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 01:39:40 2025 +0300
+
+    flutter splash screen added
+
+[33mcommit 34685c1dd6de2f3cfb0c25173ab20675afedeccd[m[33m ([m[1;31morigin/feature/Forget-Password[m[33m)[m
+Merge: 8ac4374 f164a65
+Author: Abdelrhman hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 01:18:29 2025 +0300
+
+    Merge pull request #11 from AbdelrhmanH295/feature/login_screen
+    
+    Feature/login screen
+
+[33mcommit f164a65cb9a912b66c5c7a0ebf4f266a6f0c8a29[m[33m ([m[1;31morigin/feature/login_screen[m[33m, [m[1;32mfeature/login_screen[m[33m)[m
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 01:17:46 2025 +0300
+
+    ui changes
+
+[33mcommit 363a1ec02c23fe1c410ffd4ef5c14877b1ae6249[m
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Fri Aug 22 01:04:21 2025 +0300
+
+    login screen ui finish
+
+[33mcommit 8ac437415a9f48b9a35d249ed1144eda6fbd4592[m
+Merge: a5fa471 871b49b
+Author: Abdelrhman hammam <abodyhard295@gmail.com>
+Date:   Thu Aug 21 23:47:48 2025 +0300
+
+    Merge pull request #10 from AbdelrhmanH295/feature/register_screen
+    
+    Feature/register screen
+
+[33mcommit a5fa47198449643b9fdedf1153760d8d8f276443[m
+Merge: 6a4d079 d74770f
+Author: Abdelrhman hammam <abodyhard295@gmail.com>
+Date:   Thu Aug 21 23:46:37 2025 +0300
+
+    Merge pull request #9 from AbdelrhmanH295/feature/Forget-Password
+    
+    ui edit
+
+[33mcommit d74770fbac50f4f6debf02b06a58f231d1b5e7cf[m
+Author: Abdelrhman Hammam <abodyhard295@gmail.com>
+Date:   Thu Aug 21 23:45:21 2025 +0300
+
+    ui edit
+
+[33mcommit 871b49b690e3c87f5e6aa55577f9f1c59fbc75b6[m
+Merge: 3d74433 6a4d079
+Author: AbdelrhmanAmr2005 <abdoswimoct123@gmail.com>
+Date:   Thu Aug 21 23:36:04 2025 +0300
+
+    Merge branch 'development'
+
+[33mcommit 3d74433f3c6095968eb2fb4fd57e1292747e43e1[m
+Author: AbdelrhmanAmr2005 <abdoswimoct123@gmail.com>
+Date:   Thu Aug 21 23:19:10 2025 +0300
+
+    register_screen ui added
+
+[33mcommit 6a4d07987781ba18ab9986914ec7f9c9ab759983[m
+Merge: 508af8e 5d43e01
+Author: Abdelrhman hammam <abodyhard295@gmail.com>
+Date:   Thu Aug 21 23:15:12 2025 +0300
+
+    Merge pull request #8 from AbdelrhmanH295/feature/Forget-Password
+    
+    forget password page
+
+[33mcommit 5d43e015d8e9973b60f36bd67a75c12be5a63e5f[m
+Author: mostafa-eltrass <eltrassmostaf@gmail.com>
+Date:   Thu Aug 21 12:14:04 2025 +0300
+
+    forget password page
+
+[33mcommit 508af8e3566b55480d8b520287a4f81721238336[m
+Merge: b72eef1 e30a915
+Author: Abdelrhman hammam <abodyhard295@gmail.com>
+Date:   Wed Aug 20 10:36:14 2025 +0300
+
+    Merge pull request #6 from AbdelrhmanH295/feature/profile-update
+    
+    profile update ui finish
+
+[33mcommit e30a915648a6a04c76c1cfa3458da9c4a8
