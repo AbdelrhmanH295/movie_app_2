@@ -1,13 +1,27 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-import 'package:movie_app/api/api_login_screen/api-endpoints.dart';
+import 'package:movie_app/api/api_login_screen/api-constant.dart';
+import 'package:movie_app/api/shared_prefrence/shared_preferences.dart';
 import 'package:movie_app/model/login_response.dart';
-import 'package:movie_app/model/register_response.dart';
-
-import 'api-constant.dart';
 
 class ApiManager {
+  Future<LoginResponse> login(String email, String password) async {
+    final url = Uri.parse('${ApiConstants.baseUrl}/auth/login');
+    final response = await http.post(url,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: jsonEncode({"email": email, "password": password}));
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      return LoginResponse.fromJson(data);
+    } else {
+      return LoginResponse(message: "Login Failed", data: null);
+    }
+  }
+}
+
+/*
   static Future<LoginResponse> login(String email, String password) async {
     final url = Uri.parse("${ApiConstants.baseUrl}${ApiEndpoints.login}");
     final response = await http.post(
@@ -65,5 +79,4 @@ class ApiManager {
     } catch (e) {
       throw Exception("Error while registering: $e");
     }
-  }
-}
+  }*/

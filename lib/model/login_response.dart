@@ -1,13 +1,15 @@
 class LoginResponse {
-  final String message;
-  final String? token;
-
-  LoginResponse({required this.message, this.token});
+  String message;
+  String? data;
+  LoginResponse({required this.message, required this.data});
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     return LoginResponse(
-      message: json["message"],
-      token: json["data"],
+      message: json["message"] ?? "",
+      data: json["data"],
     );
+  }
+  Map<String, dynamic> toJson() {
+    return {"message": message, "data": data};
   }
 }
