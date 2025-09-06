@@ -4,6 +4,7 @@ import 'package:movie_app/api/api_home_screen/api_manager.dart';
 import 'package:movie_app/model/movie_response.dart';
 import 'package:movie_app/utils/app_assets.dart';
 import 'package:movie_app/utils/app_colors.dart';
+import 'package:movie_app/utils/app_routes.dart';
 import 'package:movie_app/utils/app_styles.dart';
 
 class HomeTab extends StatefulWidget {
@@ -21,6 +22,24 @@ class _HomeTabState extends State<HomeTab> {
   void initState() {
     moviesFuture = ApiManager.getMovies();
     super.initState();
+  }
+
+  Widget buildNetworkImage(String? url,
+      {BoxFit fit = BoxFit.cover, double? width, double? height}) {
+    return Image.network(
+      url ?? "https://via.placeholder.com/300",
+      fit: fit,
+      width: width,
+      height: height,
+      errorBuilder: (context, error, stackTrace) {
+        return Image.asset(
+          AppAssets.emptyListIcon, 
+          fit: fit,
+          width: width,
+          height: height,
+        );
+      },
+    );
   }
 
   @override
@@ -41,11 +60,13 @@ class _HomeTabState extends State<HomeTab> {
                       heightFactor: 22, child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
                   return Center(child: Text("Error: ${snapshot.error}"));
-                } else if (!snapshot.hasData || snapshot.data == null) {
+                } else if (!snapshot.hasData ||
+                    snapshot.data == null ||
+                    snapshot.data?.data?.movies == null) {
                   return Center(child: Image.asset(AppAssets.emptyListIcon));
                 }
 
-                var movies = snapshot.data!.data!.movies!;
+                var movies = snapshot.data?.data?.movies ?? [];
 
                 return Container(
                   height: height * 0.75,
@@ -54,10 +75,8 @@ class _HomeTabState extends State<HomeTab> {
                       Positioned.fill(
                         child: AnimatedSwitcher(
                           duration: const Duration(milliseconds: 600),
-                          child: Image.network(
-                            movies[currentIndex].mediumCoverImage ??
-                                "https://via.placeholder.com/600x400",
-                            key: ValueKey(movies[currentIndex].backgroundImage),
+                          child: buildNetworkImage(
+                            movies[currentIndex].mediumCoverImage,
                             fit: BoxFit.cover,
                             width: double.infinity,
                             height: double.infinity,
@@ -97,11 +116,8 @@ class _HomeTabState extends State<HomeTab> {
                               child: Stack(
                                 children: [
                                   Positioned.fill(
-                                    child: Image.network(
-                                      movie.mediumCoverImage ??
-                                          "https://via.placeholder.com/300",
-                                      fit: BoxFit.cover,
-                                    ),
+                                    child: buildNetworkImage(
+                                        movie.mediumCoverImage),
                                   ),
                                   Positioned(
                                     top: 8,
@@ -165,11 +181,14 @@ class _HomeTabState extends State<HomeTab> {
                   return const Center(child: Text(''));
                 } else if (snapshot.hasError) {
                   return Center(child: Text("Error: ${snapshot.error}"));
-                } else if (!snapshot.hasData || snapshot.data == null) {
+                } else if (!snapshot.hasData ||
+                    snapshot.data == null ||
+                    snapshot.data?.data?.movies == null) {
                   return Center(child: Image.asset(AppAssets.emptyListIcon));
                 }
 
-                var movies = snapshot.data!.data!.movies!;
+                var movies = snapshot.data?.data?.movies ?? [];
+
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -198,31 +217,38 @@ class _HomeTabState extends State<HomeTab> {
                       ),
                       SizedBox(
                         height: 200,
-                        child: Expanded(
-                          child: ListView.separated(
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                              itemBuilder: (context, index) {
-                                final movie = movies[index];
-                                return Container(
+                        child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              final movie = movies[index];
+                              return GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    AppRoutes.movieDeatailsScreen,
+                                    arguments: movie.id,
+                                  );
+                                },
+                                child: Container(
                                   width: 130,
                                   margin: const EdgeInsets.only(right: 8),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(12),
-                                    child: Image.network(
-                                      movie.mediumCoverImage ?? "",
+                                    child: buildNetworkImage(
+                                      movie.mediumCoverImage,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                );
-                              },
-                              separatorBuilder: (context, index) {
-                                return SizedBox(
-                                  width: width * 0.02,
-                                );
-                              },
-                              itemCount: movies.length),
-                        ),
+                                ),
+                              );
+                            },
+                            separatorBuilder: (context, index) {
+                              return SizedBox(
+                                width: width * 0.02,
+                              );
+                            },
+                            itemCount: movies.length),
                       )
                     ],
                   ),
