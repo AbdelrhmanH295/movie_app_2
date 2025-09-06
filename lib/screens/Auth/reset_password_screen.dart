@@ -3,7 +3,7 @@ import 'package:movie_app/api/api_reset_password_screen/api_manager.dart';
 import 'package:movie_app/api/shared_prefrence/shared_preferences.dart';
 import 'package:movie_app/custom_widgets/custom_elevated_button.dart';
 import 'package:movie_app/custom_widgets/custom_text_form_field.dart';
-import 'package:movie_app/screens/register_screen.dart';
+import 'package:movie_app/screens/Auth/register_screen.dart';
 import 'package:movie_app/utils/app_assets.dart';
 import 'package:movie_app/utils/app_colors.dart';
 import 'package:movie_app/utils/app_routes.dart';

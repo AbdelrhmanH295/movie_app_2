@@ -6,16 +6,16 @@ import 'package:movie_app/model/movie_response.dart';
 
 class ApiManager {
   static Future<Movie?> getMovies() async {
-    Uri url = Uri.https(ApiConstant.baseUrl, ApiConstant.endpoint);
-    var response = await http.get(url);
     try {
+      Uri url = Uri.https(ApiConstant.baseUrl, ApiConstant.endpoint);
+      var response = await http.get(url);
       var responseBody = response.body; // to do : string
       //Todo : String=> json
       var json = jsonDecode(responseBody); // todo : json
       //json=>object
       return Movie.fromJson(json);
     } catch (e) {
-      throw e;
+      return Movie(statusMessage: 'faild req');
     }
   }
 //   static Future<List<Movie?>> getMovies() async {

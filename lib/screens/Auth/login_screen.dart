@@ -13,7 +13,7 @@ import 'package:movie_app/utils/app_colors.dart';
 import 'package:movie_app/utils/app_routes.dart';
 import 'package:movie_app/utils/app_styles.dart';
 
-import '../../../utils/dialog-utils.dart';
+import '../../../../utils/dialog-utils.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
