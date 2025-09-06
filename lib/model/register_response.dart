@@ -1,44 +1,46 @@
-class RegisterResponse {
+import 'dart:convert';
+
+UserResponse userResponseFromJson(String str) =>
+    UserResponse.fromJson(json.decode(str));
+
+String userResponseToJson(UserResponse data) => json.encode(data.toJson());
+
+class UserResponse {
   String? message;
-  UserData? data;
-
-  RegisterResponse({required this.message, required this.data});
-
-  factory RegisterResponse.fromJson(Map<String, dynamic> json) {
-    return RegisterResponse(
-      message: json['message'],
-      data: UserData.fromJson(json['data']),
-    );
-  }
-}
-
-class UserData {
-  int? id;
   String? name;
   String? email;
+  String? password;
+  String? confirmPassword;
   String? phone;
+  int? avaterId;
 
-  UserData({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.phone,
+  UserResponse({
+    this.message,
+    this.name,
+    this.email,
+    this.password,
+    this.confirmPassword,
+    this.phone,
+    this.avaterId,
   });
 
-  UserData.fromJson(dynamic json) {
-    id = json['id'];
-    name = json['name'];
-    email = json['email'];
-    phone = json['phone'];
-  }
+  factory UserResponse.fromJson(Map<String, dynamic> json) => UserResponse(
+        message: json["message"],
+        name: json["name"],
+        email: json["email"],
+        password: json["password"],
+        confirmPassword: json["confirmPassword"],
+        phone: json["phone"],
+        avaterId: json["avaterId"],
+      );
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = id;
-    map['name'] = name;
-    map['email'] = email;
-    map['phone'] = phone;
-
-    return map;
-  }
+  Map<String, dynamic> toJson() => {
+        "message": message,
+        "name": name,
+        "email": email,
+        "password": password,
+        "confirmPassword": confirmPassword,
+        "phone": phone,
+        "avaterId": avaterId,
+      };
 }

@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:movie_app/api/api_login_screen/api_manager.dart';
-import 'package:movie_app/app-prefrences/user_storage.dart';
+import 'package:movie_app/api/api_login_screen/api-constant.dart';
+import 'package:movie_app/api/shared_prefrence/shared_preferences.dart';
+
 import 'package:movie_app/custom_widgets/custom_elevated_button.dart';
 import 'package:movie_app/custom_widgets/custom_text_form_field.dart';
 import 'package:movie_app/utils/app_assets.dart';
@@ -11,8 +13,7 @@ import 'package:movie_app/utils/app_colors.dart';
 import 'package:movie_app/utils/app_routes.dart';
 import 'package:movie_app/utils/app_styles.dart';
 
-import '../../../app-prefrences/token-storage.dart';
-import '../../../utils/dialog-utils.dart';
+import '../../../../utils/dialog-utils.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -31,8 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool obscure = true;
 
-  final GoogleSignIn googleSignIn = GoogleSignIn(
-      scopes: ['email']);
+  final GoogleSignIn googleSignIn = GoogleSignIn(scopes: ['email']);
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +63,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       if (text == null || text.trim().isEmpty) {
                         return "Enter Email";
                       }
-                      final emailValid = RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w]{2,4}$")
-                          .hasMatch(text);
+                      final emailValid =
+                          RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w]{2,4}$")
+                              .hasMatch(text);
                       if (!emailValid) {
                         return "Enter valid Email";
                       }
@@ -114,7 +115,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: height * 0.02),
                   CustomElevatedButton(
-                    onPressed: () => login(),
+                    onPressed: () {
+                      login();
+                    },
                     text: 'Login',
                     textStyle: AppStyles.regular20Black,
                     backgroundColor: AppColors.yellowColor,
@@ -148,8 +151,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: const EdgeInsets.symmetric(horizontal: 18.0),
                         child: Text(
                           'OR',
-                          style: AppStyles.regular16Yellow.copyWith(
-                              fontWeight: FontWeight.bold),
+                          style: AppStyles.regular16Yellow
+                              .copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
                       Expanded(
@@ -166,8 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       print("Google login Success");
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Text("Google login Success")),
+                        const SnackBar(content: Text("Google login Success")),
                       );
                     },
                     text: 'Login With Google',
@@ -179,7 +181,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     backgroundColor: AppColors.yellowColor,
                   ),
-
                   SizedBox(height: height * 0.03),
                   Align(
                     alignment: Alignment.topCenter,
@@ -198,63 +199,34 @@ class _LoginScreenState extends State<LoginScreen> {
     if (formKey.currentState?.validate() == true) {
       final email = emailController.text.trim();
       final password = passwordController.text.trim();
+      DialogUtils.showLopading(textLoading: "Logging in...", context: context);
+      final response = await ApiManager().login(email, password);
+      DialogUtils.hideLoading(context: context);
+      print("Response Message: ${response.message}");
+      print("Response Token: ${response.data}");
 
-      try {
-        DialogUtils.showLopading(
-            textLoading: "Logging in...", context: context);
-
-        final response = await ApiManager.login(email, password);
-
-        DialogUtils.hideLoading(context: context);
-
-        if (response.message == "Success Login") {
-          if (response.token != null) {
-            await TokenStorage.saveToken(response.token!);
-            debugPrint("Saved Token: ${response.token!}");
-          }
-
-          await UserStorage.saveLogin(email, password);
-
-          String? savedEmail = await UserStorage.getEmail();
-          String? savedPassword = await UserStorage.getPassword();
-          debugPrint("Saved Email: $savedEmail");
-          debugPrint("Saved Password: $savedPassword");
-
-          DialogUtils.showMsg(
+      if (response.message.toLowerCase().contains("success")) {
+        if (response.data != null) {
+          await TokenStorage.saveToken(response.data!);
+        }
+        DialogUtils.showMsg(
             context: context,
             title: "Success",
             msg: "Login Successful",
-            posActionName: "OK",
-              posAction: () {
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  AppRoutes.homeScreenRouteName,
-                  (route) => true,
-                );
-              });
-        } else {
-          DialogUtils.showMsg(
-            context: context,
-            title: "Login Failed",
-            msg: response.message,
-            posActionName: "Ok",
-          );
-        }
-      } on SocketException {
-        DialogUtils.hideLoading(context: context);
+            posActionName: "ok",
+            posAction: () {
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                AppRoutes.homeScreenRouteName,
+                (route) => true,
+              );
+            });
+      } else {
         DialogUtils.showMsg(
           context: context,
-          title: "No Internet",
-          msg: "Please check your internet connection and try again.",
-          posActionName: "Retry",
-        );
-      } catch (e) {
-        DialogUtils.hideLoading(context: context);
-        DialogUtils.showMsg(
-          context: context,
-          title: "Login Failed",
-          msg: e.toString().replaceFirst("Exception:", "").trim(),
-          posActionName: "Ok",
+          title: "Login",
+          msg: response.message,
+          posActionName: "OK",
         );
       }
     }
@@ -298,7 +270,56 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     }
   }
-
 }
+/*
+void login() async {
+    if (formKey.currentState?.validate() == true) {
+      final email = emailController.text.trim();
+      final password = passwordController.text.trim();
 
+      try {
+        DialogUtils.showLopading(
+            textLoading: "Logging in...", context: context);
 
+        final token = await ApiManager.login(email, password);
+
+        DialogUtils.hideLoading(context: context);
+
+        if (response.message == "Success Login") {
+          if (token != null) {
+            await TokenStorage.saveToken(token);
+            debugPrint("Saved Token: ${token!}");
+          }
+
+          await UserStorage.saveLogin(email, password);
+
+          String? savedEmail = await UserStorage.getEmail();
+          String? savedPassword = await UserStorage.getPassword();
+          debugPrint("Saved Email: $savedEmail");
+          debugPrint("Saved Password: $savedPassword");
+
+          DialogUtils.showMsg(
+              context: context,
+              title: "Success",
+              msg: "Login Successful",
+              posActionName: "OK",
+              posAction: () {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  AppRoutes.homeScreenRouteName,
+                  (route) => true,
+                );
+              });
+        } else {
+          DialogUtils.showMsg(
+            context: context,
+            title: "Login Failed",
+            msg: response.message,
+            posActionName: "Ok",
+          );
+        }
+      } catch (e) {
+        throw e.toString();
+      }
+    }
+  }*/ 

@@ -47,4 +47,6 @@ class AppAssets {
       'assets/images/search_icon_unselected.png';
   static const String watchNowImage = 'assets/images/watch_now.png';
   static const String availabelNowImage = 'assets/images/available_now.png';
+  static const String arrowBack = 'assets/images/arrowBack.png';
+  static const String bookmark = 'assets/images/bookmark.png';
 }

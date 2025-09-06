@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/api/api_reset_password_screen/api_manager.dart';
+import 'package:movie_app/api/shared_prefrence/shared_preferences.dart';
 import 'package:movie_app/custom_widgets/custom_elevated_button.dart';
 import 'package:movie_app/custom_widgets/custom_text_form_field.dart';
+import 'package:movie_app/screens/Auth/register_screen.dart';
 import 'package:movie_app/utils/app_assets.dart';
 import 'package:movie_app/utils/app_colors.dart';
+import 'package:movie_app/utils/app_routes.dart';
 import 'package:movie_app/utils/app_styles.dart';
+import 'package:movie_app/utils/dialog-utils.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
@@ -13,7 +18,7 @@ class ResetPasswordScreen extends StatefulWidget {
 }
 
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
-  final _formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   final oldPasswordController = TextEditingController();
   final newPasswordController = TextEditingController();
@@ -38,7 +43,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       body: Padding(
         padding: const EdgeInsets.all(18),
         child: Form(
-          key: _formKey,
+          key: formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -130,12 +135,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               // button
               CustomElevatedButton(
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    // todo : implement reset logic
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text("Password reset successfully!")),
-                    );
-                  }
+                  reset();
                 },
                 backgroundColor: AppColors.yellowColor,
                 text: 'Confirm Reset',
@@ -146,5 +146,41 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         ),
       ),
     );
+  }
+
+  void reset() async {
+    if (formKey.currentState?.validate() == true) {
+      final oldPassword = oldPasswordController.text.trim();
+      final newPassword = newPasswordController.text.trim();
+      final confirmpassword = confirmPasswordController.text.trim();
+      DialogUtils.showLopading(textLoading: 'proccessing', context: context);
+      try {
+        final response =
+            await ApiManager.resetPassword(newPassword, oldPassword);
+        print("Register Response: $response");
+        DialogUtils.hideLoading(context: context);
+        DialogUtils.showMsg(
+            context: context,
+            title: "Success",
+            msg: "Password Updated !",
+            posActionName: "ok",
+            posAction: () {
+              Navigator.pushNamedAndRemoveUntil(
+                context,
+                AppRoutes.loginRouteName,
+                (route) => false,
+              );
+            });
+      } catch (e) {
+        if (!mounted) return;
+        DialogUtils.hideLoading(context: context);
+        DialogUtils.showMsg(
+          context: context,
+          title: "Error",
+          msg: e.toString(),
+          posActionName: "OK",
+        );
+      }
+    }
   }
 }
