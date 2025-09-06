@@ -5,6 +5,7 @@ import 'package:movie_app/screens/home_screen.dart';
 import 'package:movie_app/screens/home_tab.dart';
 import 'package:movie_app/screens/Auth/login_screen.dart';
 import 'package:movie_app/screens/movie_details_screen.dart';
+import 'package:movie_app/screens/movie_suggestion.dart';
 import 'package:movie_app/screens/on_boarding.dart';
 import 'package:movie_app/screens/profile_update_tab.dart';
 import 'package:movie_app/screens/Auth/register_screen.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.exploreTabRouteName: (context) => ExploreTab(),
         AppRoutes.resetpasswordRouteName: (context) => ResetPasswordScreen(),
         AppRoutes.movieDeatailsScreen: (context) => MovieDetailsScreen(),
+        // AppRoutes.movieSuggestionScreen: (context) => MovieSuggestion(),
       },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',

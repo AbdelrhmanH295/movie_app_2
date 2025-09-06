@@ -229,6 +229,11 @@ class _HomeTabState extends State<HomeTab> {
                                     AppRoutes.movieDeatailsScreen,
                                     arguments: movie.id,
                                   );
+                                  // Navigator.pushNamed(
+                                  //   context,
+                                  //   AppRoutes.movieSuggestionScreen,
+                                  //   arguments: movie.id,
+                                  // );
                                 },
                                 child: Container(
                                   width: 130,
