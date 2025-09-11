@@ -35,7 +35,7 @@ class MovieDeateailsResponse {
 
 class Data {
   Movie? movie;
-
+  
   Data({this.movie});
 
   Data.fromJson(Map<String, dynamic> json) {

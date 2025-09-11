@@ -10,7 +10,7 @@ import 'package:movie_app/utils/app_colors.dart';
 import 'package:movie_app/utils/app_styles.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
-  const MovieDetailsScreen({super.key});
+  MovieDetailsScreen({super.key});
 
   @override
   State<MovieDetailsScreen> createState() => _MovieDetailsScreenState();
@@ -63,11 +63,14 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                   }
 
                   var movie = snapshot.data!.data!.movie!;
+                  var movieCast = snapshot.data!.data!.movie!.cast ?? [];
+                  var movieGenres = snapshot.data!.data!.movie!.genres ?? [];
+
                   return SingleChildScrollView(
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: width * 0.025),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        // crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Stack(
                             children: [
@@ -155,18 +158,20 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                           SizedBox(
                             height: height * 0.02,
                           ),
-                          Text(
-                            textAlign: TextAlign.start,
-                            'Screen Shots',
-                            style:
-                                AppStyles.regular20White.copyWith(fontSize: 24),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              'Screen Shots',
+                              style: AppStyles.regular20White
+                                  .copyWith(fontSize: 24),
+                            ),
                           ),
                           SizedBox(
                             height: height * 0.02,
                           ),
                           SizedBox(
                             height: height * 0.24,
-                            width: width * 0.2,
+                            width: double.infinity,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(16),
                               clipBehavior: Clip.antiAlias,
@@ -179,7 +184,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                           ),
                           SizedBox(
                             height: height * 0.24,
-                            width: width * 0.2,
+                            width: double.infinity,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(16),
                               clipBehavior: Clip.antiAlias,
@@ -192,7 +197,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                           ),
                           SizedBox(
                             height: height * 0.24,
-                            width: width * 0.2,
+                            width: double.infinity,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(16),
                               clipBehavior: Clip.antiAlias,
@@ -203,10 +208,13 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                           SizedBox(
                             height: height * 0.02,
                           ),
-                          Text(
-                            'Similar',
-                            style: AppStyles.regular20White.copyWith(
-                                fontSize: 24, fontWeight: FontWeight.bold),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              'Similar',
+                              style: AppStyles.regular20White.copyWith(
+                                  fontSize: 24, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           SizedBox(
                             height: height * 0.02,
@@ -298,10 +306,129 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                               );
                             },
                           ),
-                          Text(
-                            'Summary',
-                            style: AppStyles.regular20White.copyWith(
-                                fontSize: 24, fontWeight: FontWeight.bold),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              'Summary',
+                              style: AppStyles.regular20White.copyWith(
+                                  fontSize: 24, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            height: height * 0.02,
+                          ),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              movie.titleLong ?? '',
+                              style: AppStyles.regular16White,
+                            ),
+                          ),
+                          SizedBox(
+                            height: height * 0.03,
+                          ),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              'Cast',
+                              style: AppStyles.regular20White.copyWith(
+                                  fontSize: 24, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 380,
+                            child: ListView.builder(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: false,
+                              itemCount: movieCast.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                final actor = movieCast[index];
+                                return Container(
+                                  margin: EdgeInsets.symmetric(vertical: 6),
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade800,
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(8),
+                                        child: buildNetworkImage(
+                                          actor.urlSmallImage ?? '',
+                                          height: 60,
+                                          width: 60,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      SizedBox(width: 12),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                                "Name : ${actor.name ?? 'Unknown'}",
+                                                style: AppStyles.regular20White
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                            Text(
+                                                "Character : ${actor.characterName ?? 'Unknown'}",
+                                                style: AppStyles.regular20White
+                                                    .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              'Genres',
+                              style: AppStyles.regular20White.copyWith(
+                                  fontSize: 24, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            height: height * 0.015,
+                          ),
+                          SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              padding: EdgeInsets.zero,
+                              itemCount: movieGenres.length,
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
+                                return SizedBox(
+                                  width: width * 0.05,
+                                );
+                              },
+                              itemBuilder: (BuildContext context, int index) {
+                                final movieCategory = movieGenres[index];
+                                return Container(
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.all(12),
+                                  width: 100,
+                                  height: height * 0.05,
+                                  decoration: BoxDecoration(
+                                      color: AppColors.darkGreyColor,
+                                      borderRadius: BorderRadius.circular(12)),
+                                  child: Text(
+                                    movieCategory,
+                                    style: AppStyles.regular16White,
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                           SizedBox(
                             height: height * 0.02,
@@ -311,7 +438,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                     ),
                   );
                 },
-              )
+              ),
             ],
           ),
         ));
