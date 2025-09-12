@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/cubit/profile_update/profile_update_cubit.dart';
 import 'package:movie_app/screens/explore_tab.dart';
 import 'package:movie_app/screens/Auth/forget_password.dart';
 import 'package:movie_app/screens/home_screen.dart';
@@ -14,7 +16,9 @@ import 'package:movie_app/screens/search_tab.dart';
 import 'package:movie_app/utils/app_routes.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(BlocProvider(
+    create: (context) => ProfileUpdateCubit(),
+    child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -29,7 +33,10 @@ class MyApp extends StatelessWidget {
         AppRoutes.loginRouteName: (context) => LoginScreen(),
         AppRoutes.registerRouteName: (context) => RegisterScreen(),
         AppRoutes.forgetScreenRouteName: (context) => ForgetPassword(),
-        AppRoutes.profileUpdateRouteName: (context) => ProfileUpdateTab(),
+        AppRoutes.profileUpdateRouteName: (context) => BlocProvider(
+              child: ProfileUpdateTab(),
+              create: (context) => ProfileUpdateCubit(),
+            ),
         AppRoutes.onBoarding: (context) => OnBoarding(),
         AppRoutes.homeScreenRouteName: (context) => HomeScreen(),
         AppRoutes.homeTabRouteName: (context) => HomeTab(),
