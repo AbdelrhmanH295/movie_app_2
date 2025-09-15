@@ -12,7 +12,7 @@ import 'package:movie_app/screens/on_boarding.dart';
 import 'package:movie_app/screens/profile_update_tab.dart';
 import 'package:movie_app/screens/Auth/register_screen.dart';
 import 'package:movie_app/screens/Auth/reset_password_screen.dart';
-import 'package:movie_app/screens/search_tab.dart';
+import 'package:movie_app/screens/search%20tab/search_tab.dart';
 import 'package:movie_app/utils/app_routes.dart';
 
 void main() {
