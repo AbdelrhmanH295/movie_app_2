@@ -14,7 +14,6 @@ class ApiManagerr {
         var json = jsonDecode(response.body);
         Movie movieResponse = Movie.fromJson(json);
 
-        // نرجع ليست الأفلام من جوه Data
         return movieResponse.data?.movies ?? [];
       } else {
         return [];
