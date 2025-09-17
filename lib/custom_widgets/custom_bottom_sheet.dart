@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/cubit/profile_update/profile_update_cubit.dart';
 import 'package:movie_app/utils/app_assets.dart';
 import 'package:movie_app/utils/app_colors.dart';
 
@@ -23,7 +25,8 @@ class CustomBottomSheet extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: width*0.04,vertical: height*0.02),
+        padding: EdgeInsets.symmetric(
+            horizontal: width * 0.04, vertical: height * 0.02),
         decoration: BoxDecoration(
             color: AppColors.darkGreyColor,
             borderRadius: BorderRadius.circular(24)),
@@ -33,13 +36,29 @@ class CustomBottomSheet extends StatelessWidget {
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
             mainAxisSpacing: 18,
-            crossAxisSpacing:26,
+            crossAxisSpacing: 26,
           ),
           itemBuilder: (context, index) {
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: Image.asset(avatarUpdateList[index],
-              fit: BoxFit.cover,),
+            return GestureDetector(
+              onTap: () {
+                context
+                    .read<ProfileUpdateCubit>()
+                    .selectAvatar(avatarUpdateList[index]);
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text("Profile Updated successfully"),
+                    backgroundColor: Colors.green,
+                  ),
+                );
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Image.asset(
+                  avatarUpdateList[index],
+                  fit: BoxFit.cover,
+                ),
+              ),
             );
           },
         ));

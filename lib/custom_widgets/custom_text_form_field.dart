@@ -5,7 +5,7 @@ import 'package:movie_app/utils/app_styles.dart';
 typedef OnValidator = String? Function(String?)?;
 
 class CustomTextFormField extends StatelessWidget {
-  Color ? colorBorderSide;
+  Color? colorBorderSide;
   String? hintText;
   TextStyle? hintStyle;
   String? labelText;
@@ -13,26 +13,27 @@ class CustomTextFormField extends StatelessWidget {
   Widget? prefixIcon;
   Widget? suffixIcon;
   OnValidator validator;
-  TextEditingController ? controller;
+  TextEditingController? controller;
   TextInputType keyBoardType;
   bool obsecureText;
   int? maxLines;
+  final Function(String)? onChanged;
 
-  CustomTextFormField({
-    super.key,
-     required this.colorBorderSide,
-    this.hintText,
-    this.hintStyle,
-    this.labelStyle,
-    this.labelText,
-    this.prefixIcon,
-    this.suffixIcon,
-    this.validator,
-    this.maxLines,
-    this.controller,
-    this.keyBoardType = TextInputType.text,
-    this.obsecureText = false,
-  });
+  CustomTextFormField(
+      {super.key,
+      required this.colorBorderSide,
+      this.hintText,
+      this.hintStyle,
+      this.labelStyle,
+      this.labelText,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.validator,
+      this.maxLines,
+      this.controller,
+      this.keyBoardType = TextInputType.text,
+      this.obsecureText = false,
+      this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,6 @@ class CustomTextFormField extends StatelessWidget {
       style: TextStyle(color: Theme.of(context).canvasColor),
       maxLines: maxLines ?? 1,
       decoration: InputDecoration(
-        
         enabledBorder: buildDecorationBorder(
           colorBorderSide: colorBorderSide,
         ),
@@ -67,6 +67,7 @@ class CustomTextFormField extends StatelessWidget {
       controller: controller,
       keyboardType: keyBoardType,
       obscureText: obsecureText,
+      onChanged: onChanged, 
     );
   }
 
