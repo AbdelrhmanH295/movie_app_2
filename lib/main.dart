@@ -7,6 +7,7 @@ import 'package:movie_app/screens/Auth/login_screen.dart';
 import 'package:movie_app/screens/movie_details_screen.dart';
 import 'package:movie_app/screens/movie_suggestion.dart';
 import 'package:movie_app/screens/on_boarding.dart';
+import 'package:movie_app/screens/profile_tab.dart';
 import 'package:movie_app/screens/profile_update_tab.dart';
 import 'package:movie_app/screens/Auth/register_screen.dart';
 import 'package:movie_app/screens/Auth/reset_password_screen.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.exploreTabRouteName: (context) => ExploreTab(),
         AppRoutes.resetpasswordRouteName: (context) => ResetPasswordScreen(),
         AppRoutes.movieDeatailsScreen: (context) => MovieDetailsScreen(),
+        AppRoutes.profileTabScreen: (context) => ProfileTab(),
         // AppRoutes.movieSuggestionScreen: (context) => MovieSuggestion(),
       },
       debugShowCheckedModeBanner: false,

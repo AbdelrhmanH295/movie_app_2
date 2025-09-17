@@ -11,4 +11,5 @@ class AppRoutes {
   static const String profileUpdateRouteName = 'profile_update_tab';
   static const String movieDeatailsScreen = 'movie_detail_screen';
   static const String movieSuggestionScreen = 'movie_suggestion_screen';
+  static const String profileTabScreen = 'profile_tab_screen';
 }
