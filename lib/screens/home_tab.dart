@@ -33,7 +33,7 @@ class _HomeTabState extends State<HomeTab> {
       height: height,
       errorBuilder: (context, error, stackTrace) {
         return Image.asset(
-          AppAssets.emptyListIcon, 
+          AppAssets.emptyListIcon,
           fit: fit,
           width: width,
           height: height,
@@ -229,6 +229,7 @@ class _HomeTabState extends State<HomeTab> {
                                     AppRoutes.movieDeatailsScreen,
                                     arguments: movie.id,
                                   );
+                                
                                 },
                                 child: Container(
                                   width: 130,

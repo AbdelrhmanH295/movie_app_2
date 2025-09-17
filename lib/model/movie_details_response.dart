@@ -11,7 +11,7 @@ class MovieDeateailsResponse {
     status = json["status"];
     statusMessage = json["status_message"];
     data = json["data"] == null ? null : Data.fromJson(json["data"]);
-   ;
+  ;
   }
 
   static List<MovieDeateailsResponse> fromList(List<Map<String, dynamic>> list) {
@@ -35,7 +35,7 @@ class MovieDeateailsResponse {
 
 class Data {
   Movie? movie;
-
+  
   Data({this.movie});
 
   Data.fromJson(Map<String, dynamic> json) {

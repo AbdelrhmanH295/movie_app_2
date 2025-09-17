@@ -43,6 +43,8 @@ dependencies:
   intl: any
   carousel_slider: ^5.1.1
   flutter_native_splash: 2.4.4
+  flutter_bloc: ^9.1.1
+  equatable: ^2.0.7
 
 
 dev_dependencies:
