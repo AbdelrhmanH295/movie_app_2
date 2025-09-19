@@ -154,13 +154,12 @@ class EditProfileScreen extends StatelessWidget {
                         itemCount: favorites.length,
                         itemBuilder: (context, index) {
                           final movie = favorites[index];
-                          return ListTile(
-                            title: Image.network(
-                              movie.largeCoverImage ?? '',
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                            ),
-                          );
+                          return Container(
+                              height: height * 0.4,
+                              child: Image.network(
+                                movie.mediumCoverImage ?? '',
+                                fit: BoxFit.fill,
+                              ));
                         },
                       );
                     } else if (state is FavoritesError) {
@@ -180,8 +179,52 @@ class EditProfileScreen extends StatelessWidget {
                     }
                   },
                 ),
+                BlocBuilder<AddFavoriteCubit, FavoritesState>(
+                  builder: (context, state) {
+                    if (state is FavoritesLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is FavoritesSuccess) {
+                      final favorites = state.favorites;
 
-                Image.asset(AppAssets.gamer1)
+                      if (favorites.isEmpty) {
+                        return const Center(
+                          child: Text(
+                            'No favorites yet',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        );
+                      }
+
+                      return ListView.builder(
+                        padding: EdgeInsets.zero,
+                        itemCount: favorites.length,
+                        itemBuilder: (context, index) {
+                          final movie = favorites[index];
+                          return Container(
+                              height: height * 0.4,
+                              child: Image.network(
+                                movie.mediumCoverImage ?? '',
+                                fit: BoxFit.fill,
+                              ));
+                        },
+                      );
+                    } else if (state is FavoritesError) {
+                      return Center(
+                        child: Text(
+                          state.message,
+                          style: const TextStyle(color: Colors.red),
+                        ),
+                      );
+                    } else {
+                      return const Center(
+                        child: Text(
+                          'No favorites yet',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      );
+                    }
+                  },
+                ),
               ]),
             )
           ],
