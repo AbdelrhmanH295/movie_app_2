@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/cubit/add_favorite_cubit/add_favorite_cubit.dart';
 import 'package:movie_app/cubit/profile_update/profile_update_cubit.dart';
+import 'package:movie_app/screens/edit_profile_screen.dart';
 import 'package:movie_app/screens/explore_tab.dart';
 import 'package:movie_app/screens/Auth/forget_password.dart';
 import 'package:movie_app/screens/home_screen.dart';
@@ -16,9 +18,10 @@ import 'package:movie_app/screens/search%20tab/search_tab.dart';
 import 'package:movie_app/utils/app_routes.dart';
 
 void main() {
-  runApp(BlocProvider(
-    create: (context) => ProfileUpdateCubit(),
-    child: MyApp()));
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider(create: (context) => AddFavoriteCubit()),
+    BlocProvider(create: (context) => ProfileUpdateCubit())
+  ], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -44,6 +47,7 @@ class MyApp extends StatelessWidget {
         AppRoutes.exploreTabRouteName: (context) => ExploreTab(),
         AppRoutes.resetpasswordRouteName: (context) => ResetPasswordScreen(),
         AppRoutes.movieDeatailsScreen: (context) => MovieDetailsScreen(),
+        AppRoutes.editProfileScreen: (context) => EditProfileScreen()
         // AppRoutes.movieSuggestionScreen: (context) => MovieSuggestion(),
       },
       debugShowCheckedModeBanner: false,

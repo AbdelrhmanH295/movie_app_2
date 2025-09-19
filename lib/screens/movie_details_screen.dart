@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/api/api_movie_details_screen/api_manager_movie_details.dart';
 import 'package:movie_app/api/api_suggestion/api_manager.dart';
+import 'package:movie_app/cubit/add_favorite_cubit/add_favorite_cubit.dart';
 import 'package:movie_app/custom_widgets/custom_container.dart';
 import 'package:movie_app/custom_widgets/custom_elevated_button.dart';
 import 'package:movie_app/model/movie_details_response.dart';
@@ -92,10 +94,17 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                       SizedBox(
                                         width: width * 0.8,
                                       ),
-                                      const Icon(
-                                        Icons.bookmark,
-                                        size: 35,
-                                        color: AppColors.whiteColor,
+                                      InkWell(
+                                        onTap: () {
+                                          context
+                                              .read<AddFavoriteCubit>()
+                                              .addFavorite(movie);
+                                        },
+                                        child: const Icon(
+                                          Icons.bookmark,
+                                          size: 35,
+                                          color: AppColors.whiteColor,
+                                        ),
                                       )
                                     ],
                                   )),
