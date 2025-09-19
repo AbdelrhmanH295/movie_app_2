@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/screens/edit_profile_screen.dart';
 import 'package:movie_app/screens/explore_tab.dart';
 import 'package:movie_app/screens/home_tab.dart';
 import 'package:movie_app/screens/profile_update_tab.dart';
-import 'package:movie_app/screens/search_tab.dart';
+import 'package:movie_app/screens/search%20tab/search_tab.dart';
 import 'package:movie_app/utils/app_assets.dart';
 import 'package:movie_app/utils/app_colors.dart';
 
@@ -19,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     HomeTab(),
     SearchTab(),
     ExploreTab(),
-    ProfileUpdateTab()
+    EditProfileScreen()
   ];
 
   @override

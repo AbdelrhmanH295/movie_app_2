@@ -16,7 +16,7 @@ class ApiManager {
       final data = jsonDecode(response.body);
       return LoginResponse.fromJson(data);
     } else {
-      return LoginResponse(message: "Login Failed", data: null);
+      return LoginResponse(message: " Failed", data: null);
     }
   }
 }
